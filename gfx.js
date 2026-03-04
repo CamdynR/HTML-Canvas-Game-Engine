@@ -3,9 +3,6 @@
 import Square from './entities/Square.js';
 import { ELEMS } from './index.js';
 
-const TARGET_FPS = 60;
-const FRAME_DURATION = 1000 / TARGET_FPS; // ~16.67ms
-
 const CANVAS = ELEMS.canvas.ref;
 const CTX = ELEMS.canvas.ctx;
 
