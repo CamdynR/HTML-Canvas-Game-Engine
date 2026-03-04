@@ -6,8 +6,6 @@ import { ELEMS } from './index.js';
 const CANVAS = ELEMS.canvas.ref;
 const CTX = ELEMS.canvas.ctx;
 
-let lastTime = 0;
-
 const STATE = {
   entities: [],
 };
@@ -52,10 +50,7 @@ function render() {
   STATE.entities.forEach((entity) => entity.render(CTX));
 }
 
-function loop(timestamp) {
-  const elapsed = timestamp - lastTime;
-  lastTime = timestamp;
-
+function loop() {
   const player = STATE.entities[0];
   const speed = player.speed * (CONTROLS[' '] ? 2 : 1);
   const maxX = CANVAS.width / (window.devicePixelRatio || 1) - player.size;
@@ -77,8 +72,7 @@ function initGame() {
   resizeCanvas();
   initState();
   initControls();
-  requestAnimationFrame((timestamp) => {
-    lastTime = timestamp;
+  requestAnimationFrame(() => {
     requestAnimationFrame(loop);
   });
   window.addEventListener('resize', resizeCanvas);
